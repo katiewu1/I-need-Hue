@@ -1,0 +1,102 @@
+body {
+  font-family: 'Gluten', cursive;
+  margin: 10px;
+}
+
+h1 {
+  background-color: pink;
+}
+
+.state {
+  background-color: yellow;
+}
+
+.switch-toggle {
+  display: flex;
+  height: 100%;
+  width: 100px;
+  align-items: center;
+}
+.switch-btn,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button-check {
+  position: relative;
+  width: 90px;
+  height: 46px;
+  overflow: hidden;
+  border-radius: 50px;
+}
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.switch-btn {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #8cf7a0;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+#buttonCheck .switch-btn:before,
+#buttonCheck .switch-btn:after {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 30px;
+  height: 20px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: #00921c;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#buttonCheck .switch-btn:before {
+  content: 'ON';
+}
+
+#buttonCheck .switch-btn:after {
+  content: 'OFF';
+}
+
+#buttonCheck .switch-btn:after {
+  right: -50px;
+  left: auto;
+  background-color: #f44336;
+}
+
+#buttonCheck .checkbox:checked + .switch-btn:before {
+  left: -50px;
+}
+
+#buttonCheck .checkbox:checked + .switch-btn:after {
+  right: 4px;
+}
+
+#buttonCheck .checkbox:checked ~ .layer {
+  background-color: #fdd1d1;
+}

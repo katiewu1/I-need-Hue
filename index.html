@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I need Hue</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>I need Hue</h1>
+    <div id="currentState" class="state"></div>
+    <!-- <label class="switch">
+      <input type="checkbox" />
+      <span class="slider round" data-on="ON" data-off="OFF"></span>
+    </label> -->
+    <label class="switch-toggle">
+      <div class="button-check" id="buttonCheck">
+        <input type="checkbox" class="checkbox" id="checkBox" />
+        <span class="switch-btn"></span>
+        <span class="layer"></span>
+      </div>
+    </label>
+
+    <button class="buttons">button 1</button>
+    <button class="buttons">button 2</button>
+    <button class="buttons">button 3</button>
+    <button class="buttons">button 4</button>
+    <button class="buttons">button 5</button>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
