@@ -1,10 +1,21 @@
 body {
   font-family: 'Gluten', cursive;
   margin: 10px;
+  background-color: rgb(75, 75, 75);
 }
 
 h1 {
-  background-color: pink;
+  /* /background-color: pink; */
+  font-size: 72px;
+  /* background: -webkit-linear-gradient(rgb(243, 198, 235), rgb(54, 204, 209)); */
+  background: linear-gradient(to right, #f0cff3 40%, #1fe2d8 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+h2 {
+  color: #fff;
 }
 
 .state {

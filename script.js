@@ -10,20 +10,22 @@
 //brightness maximum: 254
 //hue/measure of color: 10000 points (hue runs from 0 to 65535)
 
+const API_LIGHT_3 =
+  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3';
+const API_LIGHT_3_STATE =
+  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3/state';
 const currentState = document.getElementById('currentState');
 const switchCheckBox = document.getElementById('checkBox');
 
-fetch(
-  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3'
-)
+fetch(API_LIGHT_3)
   .then((response) => {
     return response.json();
   })
   .then((json) => {
-    console.log(json);
+    //console.log(json);
 
     const state = json.state;
-    console.log(state);
+    //console.log(state);
 
     if (state.on === true) {
       const lightOn = 'on';
@@ -56,3 +58,22 @@ document.querySelectorAll('.buttons').forEach((button) => {
     </label>
     `;
 });
+
+switchCheckBox.onchange = () => {
+  //checked === true, the switch is off/turned off the switch
+  if (switchCheckBox.checked === true) {
+    console.log('switch checkbox: true, switch is off. Turn OFF the light!');
+    fetch(API_LIGHT_3_STATE, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ on: false }),
+    });
+  } else {
+    console.log('switch checkbox: false, switch is on. Turn ON the light!');
+    fetch(API_LIGHT_3_STATE, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ on: true }),
+    });
+  }
+};
