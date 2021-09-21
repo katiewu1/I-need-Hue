@@ -10,70 +10,80 @@
 //brightness maximum: 254
 //hue/measure of color: 10000 points (hue runs from 0 to 65535)
 
-const API_LIGHT_3 =
-  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3';
-const API_LIGHT_3_STATE =
-  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3/state';
+const API_LIGHTS = [
+  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3',
+  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/2',
+  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/1',
+];
+
+const API_LIGHTS_STATES = [
+  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3/state',
+  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/2/state',
+  'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/1/state',
+];
+// const API_LIGHT_3 =
+//   'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3';
+// const API_LIGHT_3_STATE =
+//   'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3/state';
+// const API_LIGHT_2 =
+//   'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/2';
+// const API_LIGHT_2_STATE =
+//   'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/2/state';
 const currentState = document.getElementById('currentState');
-const switchCheckBox = document.getElementById('checkBox');
 
-fetch(API_LIGHT_3)
-  .then((response) => {
-    return response.json();
-  })
-  .then((json) => {
-    //console.log(json);
-
-    const state = json.state;
-    //console.log(state);
-
-    if (state.on === true) {
-      const lightOn = 'on';
-      currentState.innerHTML += `
-        the light is: ${lightOn}
-        `;
-      //if the light is on and if the switch is checked (switch off/check-true) -> click the switch to uncheck (switch on/uncheck-false)
-      if (switchCheckBox.checked != false) {
-        switchCheckBox.click();
-      }
-    } else {
-      const lightOff = 'off';
-      currentState.innerHTML += `
-          the light is: ${lightOff}
-          `;
-      if (switchCheckBox.checked != true) {
-        switchCheckBox.click();
-      }
-    }
-  });
-
-document.querySelectorAll('.buttons').forEach((button) => {
-  button.innerHTML += `
-    <label class="switch-toggle">
+const switchCheckBoxes = [];
+document.querySelectorAll('.switch-toggle').forEach((switchToggle, index) => {
+  switchToggle.innerHTML += `
         <div class="button-check" id="buttonCheck">
-            <input type="checkbox" class="checkbox" id="checkBox" />
+            <input type="checkbox" class="checkbox" id="checkBox${index}" />
             <span class="switch-btn"></span>
             <span class="layer"></span>
         </div>
-    </label>
     `;
+  console.log(index);
+  switchCheckBoxes[index] = document.getElementById(`checkBox${index}`);
 });
 
-switchCheckBox.onchange = () => {
-  //checked === true, the switch is off/turned off the switch
-  if (switchCheckBox.checked === true) {
-    console.log('switch checkbox: true, switch is off. Turn OFF the light!');
-    fetch(API_LIGHT_3_STATE, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ on: false }),
+API_LIGHTS.forEach((API, index) => {
+  fetch(API)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      //console.log(json);
+      const state = json.state;
+      //console.log(state);
+
+      if (state.on === true) {
+        //if the light is on and if the switch is checked (switch off/check-true) -> click the switch to uncheck (switch on/uncheck-false)
+        if (switchCheckBoxes[index].checked != false) {
+          switchCheckBoxes[index].click();
+        }
+      } else {
+        if (switchCheckBoxes[index].checked != true) {
+          switchCheckBoxes[index].click();
+        }
+      }
     });
-  } else {
-    console.log('switch checkbox: false, switch is on. Turn ON the light!');
-    fetch(API_LIGHT_3_STATE, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ on: true }),
-    });
-  }
-};
+});
+
+switchCheckBoxes.forEach((_, index) => {
+  switchCheckBoxes[index].onchange = () => {
+    //checked === true, the switch is off/turned off the switch
+    if (switchCheckBoxes[index].checked === true) {
+      console.log('switch checkbox: true, switch is off. Turn OFF the light!');
+      fetch(API_LIGHTS_STATES[index], {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ on: false }),
+      });
+    } else {
+      console.log('switch checkbox: false, switch is on. Turn ON the light!');
+      fetch(API_LIGHTS_STATES[index], {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ on: true }),
+      });
+    }
+  };
+});
