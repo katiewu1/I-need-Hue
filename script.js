@@ -10,6 +10,16 @@
 //brightness maximum: 254
 //hue/measure of color: 10000 points (hue runs from 0 to 65535)
 
+// Convert RGB to XY for Philips Hue lights
+// let xy = ColorConverter.rgbToXy(red, green, blue, light.modelid);
+// // xy = {x: xValue, y: yValue};
+
+// Convert XY + bightness to RGB
+// let rgb = ColorConverter.xyBriToRgb(x ,y , brightness);
+// // rgb =  {r: redValue, g: greenValue, b: blueValue}
+
+// import ColorConverter from './ColorConverter.js';
+
 const API_LIGHTS = [
   'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/3',
   'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/2',
@@ -40,7 +50,7 @@ document.querySelectorAll('.switch-toggle').forEach((switchToggle, index) => {
             <span class="layer"></span>
         </div>
     `;
-  console.log(index);
+  // console.log(index);
   switchCheckBoxes[index] = document.getElementById(`checkBox${index}`);
 });
 
@@ -71,14 +81,14 @@ switchCheckBoxes.forEach((_, index) => {
   switchCheckBoxes[index].onchange = () => {
     //checked === true, the switch is off/turned off the switch
     if (switchCheckBoxes[index].checked === true) {
-      console.log('switch checkbox: true, switch is off. Turn OFF the light!');
+      // console.log('switch checkbox: true, switch is off. Turn OFF the light!');
       fetch(API_LIGHTS_STATES[index], {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ on: false }),
       });
     } else {
-      console.log('switch checkbox: false, switch is on. Turn ON the light!');
+      // console.log('switch checkbox: false, switch is on. Turn ON the light!');
       fetch(API_LIGHTS_STATES[index], {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -87,3 +97,29 @@ switchCheckBoxes.forEach((_, index) => {
     }
   };
 });
+
+const showCurrentColorOffice = () => {
+  fetch(API_LIGHTS[0])
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      console.log(json.state.xy);
+      // xy": [0.4573, 0.4100]
+      const x = json.state.xy[0];
+      console.log('x:', x);
+      const y = json.state.xy[1];
+      console.log('y:', y);
+      const brightness = json.state.bri;
+      console.log('brightness:', brightness);
+      let rgb = ColorConverter.xyBriToRgb(x, y, brightness);
+      console.log('rgb:', rgb);
+      // currentState.style.background = 'rgb()';
+    });
+};
+
+showCurrentColorOffice();
+
+// Convert XY + bightness to RGB
+// let rgb = ColorConverter.xyBriToRgb(x ,y , brightness);
+// // rgb =  {r: redValue, g: greenValue, b: blueValue}
