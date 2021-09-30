@@ -24,6 +24,7 @@ h2 {
   justify-content: center;
   align-items: center;
   width: 90%;
+  margin: auto;
 }
 
 .state {
@@ -44,6 +45,7 @@ h2 {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 8px;
   width: 90%;
+  margin: auto;
 }
 
 .buttons {
