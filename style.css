@@ -20,7 +20,7 @@ h2 {
 
 .display-current-state {
   display: flex;
-  border: 1px dotted red;
+  /* border: 1px dotted red; */
   justify-content: center;
   align-items: center;
   width: 90%;
@@ -35,14 +35,14 @@ h2 {
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  color: rgb(82, 78, 78);
+  color: rgb(0, 0, 0);
   margin: 10px;
 }
 
 .all-buttons {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 6px;
+  grid-gap: 8px;
   width: 90%;
 }
 
@@ -52,7 +52,7 @@ h2 {
   font-family: 'Gluten', cursive;
   width: 94px;
   height: 54px;
-  border: 2px solid rgb(82, 78, 78);
+  border: 2px solid white;
   border-radius: 10px;
   font-size: 16px;
 }
