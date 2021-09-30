@@ -43,6 +43,8 @@ const currentStateOffice = document.getElementById('currentStateOffice');
 const heyBtn = document.getElementById('heyButton');
 const workBtn = document.getElementById('workButton');
 const eatBtn = document.getElementById('eatButton');
+const fikaBtn = document.getElementById('fikaButton');
+const sleepBtn = document.getElementById('sleepButton');
 const helpBtn = document.getElementById('helpButton');
 
 const switchCheckBoxes = [];
@@ -109,14 +111,14 @@ const showCurrentColorOffice = () => {
       return response.json();
     })
     .then((json) => {
-      console.log(json.state.xy);
+      // console.log(json.state.xy);
       // xy": [0.4573, 0.4100]
       const x = json.state.xy[0];
-      console.log('x:', x);
+      // console.log('x:', x);
       const y = json.state.xy[1];
-      console.log('y:', y);
+      // console.log('y:', y);
       const brightness = json.state.bri;
-      console.log('brightness:', brightness);
+      // console.log('brightness:', brightness);
       let rgb = ColorConverter.xyBriToRgb(x, y, brightness);
       console.log('rgb:', rgb);
       currentStateOffice.style.background = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
@@ -125,20 +127,15 @@ const showCurrentColorOffice = () => {
 
 showCurrentColorOffice();
 
-// when click on "help button for the Office light it will change color to red/pink
-helpBtn.addEventListener('click', () => {
-  // rgb(205,92,92) after converting till xy it will show us rgb(247,94,116) instead
-  let xy_values = ColorConverter.rgbToXy(255, 70, 1);
-  // console.log('xy: ', xy_values);
-  currentStateOffice.style.background = ' rgb(255,70,1)';
-
+heyBtn.addEventListener('click', () => {
+  let xy_values = ColorConverter.rgbToXy(192, 149, 76);
+  console.log('xy: ', xy_values);
+  currentStateOffice.style.background = ' rgb(192,149,76)';
   fetch(API_LIGHTS_STATES[0], {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
   });
-  // let rgb_2 = ColorConverter.xyBriToRgb(0.5566, 0.2921, 89);
-  // console.log('rgb 2', rgb_2);
 });
 
 workBtn.addEventListener('click', () => {
@@ -146,17 +143,6 @@ workBtn.addEventListener('click', () => {
   console.log('xy: ', xy_values);
   currentStateOffice.style.background = ' rgb(159, 187, 206)';
 
-  fetch(API_LIGHTS_STATES[0], {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
-  });
-});
-
-heyBtn.addEventListener('click', () => {
-  let xy_values = ColorConverter.rgbToXy(192, 149, 76);
-  console.log('xy: ', xy_values);
-  currentStateOffice.style.background = ' rgb(192,149,76)';
   fetch(API_LIGHTS_STATES[0], {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -173,4 +159,42 @@ eatBtn.addEventListener('click', () => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
   });
+});
+
+fikaBtn.addEventListener('click', () => {
+  let xy_values = ColorConverter.rgbToXy(255, 117, 253);
+  console.log('xy: ', xy_values);
+  currentStateOffice.style.background = ' rgb(255,117,253)';
+  fetch(API_LIGHTS_STATES[0], {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
+  });
+});
+
+sleepBtn.addEventListener('click', () => {
+  let xy_values = ColorConverter.rgbToXy(245, 153, 32);
+  console.log('xy: ', xy_values);
+  currentStateOffice.style.background = ' rgb(245,153,32)';
+  fetch(API_LIGHTS_STATES[0], {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
+  });
+});
+
+// when click on "help button for the Office light it will change color to red/pink
+helpBtn.addEventListener('click', () => {
+  // rgb(205,92,92) after converting till xy it will show us rgb(247,94,116) instead
+  let xy_values = ColorConverter.rgbToXy(255, 70, 1);
+  // console.log('xy: ', xy_values);
+  currentStateOffice.style.background = ' rgb(255,70,1)';
+
+  fetch(API_LIGHTS_STATES[0], {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
+  });
+  // let rgb_2 = ColorConverter.xyBriToRgb(0.5566, 0.2921, 89);
+  // console.log('rgb 2', rgb_2);
 });

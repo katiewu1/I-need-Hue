@@ -47,9 +47,21 @@
       >
         eat 🍔
       </button>
-      <button class="buttons">"fika" 🍰</button>
+      <button
+        class="buttons"
+        id="fikaButton"
+        style="background: rgb(255, 117, 253)"
+      >
+        "fika" 🍰
+      </button>
       <!-- <button class="buttons">bath 🛁</button> -->
-      <button class="buttons">sleep 😴</button>
+      <button
+        class="buttons"
+        id="sleepButton"
+        style="background: rgb(245, 153, 32)"
+      >
+        sleep 😴
+      </button>
       <button
         class="buttons"
         id="helpButton"
@@ -60,7 +72,10 @@
     </div>
 
     <h2>📚 Reading room light 💡</h2>
-    <label class="switch-toggle"></label>
+    <div class="display-current-state">
+      <label class="switch-toggle"></label>
+      <div id="currentStateReading" class="state">current color setting</div>
+    </div>
 
     <h2>💤 Bedroom light 💡</h2>
     <label class="switch-toggle"></label>
