@@ -18,8 +18,43 @@ h2 {
   color: #fff;
 }
 
+.display-current-state {
+  display: flex;
+  border: 1px dotted red;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
 .state {
-  background-color: yellow;
+  width: 200px;
+  height: 54px;
+  border: 2px solid white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: rgb(82, 78, 78);
+  margin: 10px;
+}
+
+.all-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 6px;
+  width: 90%;
+}
+
+.buttons {
+  grid-column: span 1;
+  color: rgb(82, 78, 78);
+  font-family: 'Gluten', cursive;
+  width: 94px;
+  height: 54px;
+  border: 2px solid rgb(82, 78, 78);
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 .switch-toggle {

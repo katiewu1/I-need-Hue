@@ -39,7 +39,11 @@ const API_LIGHTS_STATES = [
 //   'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/2';
 // const API_LIGHT_2_STATE =
 //   'http://192.168.10.234/api/-Gq38OfNT6SGzAl1vzCK5Y9nME4nOt2qIYrfvvTn/lights/2/state';
-const currentState = document.getElementById('currentState');
+const currentStateOffice = document.getElementById('currentStateOffice');
+const heyBtn = document.getElementById('heyButton');
+const workBtn = document.getElementById('workButton');
+const eatBtn = document.getElementById('eatButton');
+const helpBtn = document.getElementById('helpButton');
 
 const switchCheckBoxes = [];
 document.querySelectorAll('.switch-toggle').forEach((switchToggle, index) => {
@@ -98,6 +102,7 @@ switchCheckBoxes.forEach((_, index) => {
   };
 });
 
+// only the office light have xyBri values
 const showCurrentColorOffice = () => {
   fetch(API_LIGHTS[0])
     .then((response) => {
@@ -114,12 +119,58 @@ const showCurrentColorOffice = () => {
       console.log('brightness:', brightness);
       let rgb = ColorConverter.xyBriToRgb(x, y, brightness);
       console.log('rgb:', rgb);
-      // currentState.style.background = 'rgb()';
+      currentStateOffice.style.background = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
     });
 };
 
 showCurrentColorOffice();
 
-// Convert XY + bightness to RGB
-// let rgb = ColorConverter.xyBriToRgb(x ,y , brightness);
-// // rgb =  {r: redValue, g: greenValue, b: blueValue}
+// when click on "help button for the Office light it will change color to red/pink
+helpBtn.addEventListener('click', () => {
+  // rgb(205,92,92) after converting till xy it will show us rgb(247,94,116) instead
+  let xy_values = ColorConverter.rgbToXy(255, 70, 1);
+  // console.log('xy: ', xy_values);
+  currentStateOffice.style.background = ' rgb(255,70,1)';
+
+  fetch(API_LIGHTS_STATES[0], {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
+  });
+  // let rgb_2 = ColorConverter.xyBriToRgb(0.5566, 0.2921, 89);
+  // console.log('rgb 2', rgb_2);
+});
+
+workBtn.addEventListener('click', () => {
+  let xy_values = ColorConverter.rgbToXy(159, 187, 206);
+  console.log('xy: ', xy_values);
+  currentStateOffice.style.background = ' rgb(159, 187, 206)';
+
+  fetch(API_LIGHTS_STATES[0], {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
+  });
+});
+
+heyBtn.addEventListener('click', () => {
+  let xy_values = ColorConverter.rgbToXy(192, 149, 76);
+  console.log('xy: ', xy_values);
+  currentStateOffice.style.background = ' rgb(192,149,76)';
+  fetch(API_LIGHTS_STATES[0], {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
+  });
+});
+
+eatBtn.addEventListener('click', () => {
+  let xy_values = ColorConverter.rgbToXy(45, 214, 77);
+  console.log('xy: ', xy_values);
+  currentStateOffice.style.background = ' rgb(45,214,77)';
+  fetch(API_LIGHTS_STATES[0], {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ xy: [xy_values.x, xy_values.y] }),
+  });
+});

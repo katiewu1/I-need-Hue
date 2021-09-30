@@ -15,24 +15,54 @@
   </head>
   <body>
     <h1>I need Hue</h1>
-    <div id="currentState" class="state">currentState</div>
     <!-- <label class="switch">
       <input type="checkbox" />
       <span class="slider round" data-on="ON" data-off="OFF"></span>
     </label> -->
     <h2>💼 Office light 💡</h2>
-    <label class="switch-toggle"></label>
+    <div class="display-current-state">
+      <label class="switch-toggle"></label>
+      <div id="currentStateOffice" class="state">current color setting</div>
+    </div>
 
-    <button class="buttons">button 1</button>
-    <button class="buttons">button 2</button>
-    <button class="buttons">button 3</button>
-    <button class="buttons">button 4</button>
-    <button class="buttons">button 5</button>
+    <div class="all-buttons">
+      <button
+        class="buttons"
+        id="heyButton"
+        style="background: rgb(192, 149, 76)"
+      >
+        hey 👋
+      </button>
+      <button
+        class="buttons"
+        id="workButton"
+        style="background: rgb(159, 187, 206)"
+      >
+        work 👩‍💻👨‍💻
+      </button>
+      <button
+        class="buttons"
+        id="eatButton"
+        style="background: rgb(45, 214, 77)"
+      >
+        eat 🍔
+      </button>
+      <button class="buttons">"fika" 🍰</button>
+      <!-- <button class="buttons">bath 🛁</button> -->
+      <button class="buttons">sleep 😴</button>
+      <button
+        class="buttons"
+        id="helpButton"
+        style="background: rgb(255, 70, 1)"
+      >
+        help 🆘
+      </button>
+    </div>
 
     <h2>📚 Reading room light 💡</h2>
     <label class="switch-toggle"></label>
 
-    <h2>🛏 Bedroom light 💡</h2>
+    <h2>💤 Bedroom light 💡</h2>
     <label class="switch-toggle"></label>
     <script src="./ColorConverter.js"></script>
     <script src="./script.js"></script>
