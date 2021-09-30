@@ -21,7 +21,7 @@ h2 {
 .display-current-state {
   display: flex;
   /* border: 1px dotted red; */
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 90%;
   margin: auto;
@@ -147,4 +147,10 @@ h2 {
 
 #buttonCheck .checkbox:checked ~ .layer {
   background-color: #fdd1d1;
+}
+
+@media (min-width: 768px) {
+  .all-buttons {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
