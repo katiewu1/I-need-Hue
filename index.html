@@ -4,7 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- HTML Meta Tags -->
     <title>I need Hue</title>
+    <meta
+      name="description"
+      content="Web application built in JavaScript with external API. Only works locally. "
+    />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://ineedhue.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="I need Hue" />
+    <meta
+      property="og:description"
+      content="Web application built in JavaScript with external API. Only works locally. "
+    />
+    <meta
+      property="og:image"
+      content="https://ineedhue.netlify.app/assets/mobile.png"
+    />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="ineedhue.netlify.app" />
+    <meta property="twitter:url" content="https://ineedhue.netlify.app/" />
+    <meta name="twitter:title" content="I need Hue" />
+    <meta
+      name="twitter:description"
+      content="Web application built in JavaScript with external API. Only works locally. "
+    />
+    <meta
+      name="twitter:image"
+      content="https://ineedhue.netlify.app/assets/mobile.png"
+    />
+
+    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
     <link rel="stylesheet" href="./style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,71 +48,72 @@
     />
   </head>
   <body>
-    <h1>I need Hue</h1>
-    <!-- <label class="switch">
-      <input type="checkbox" />
-      <span class="slider round" data-on="ON" data-off="OFF"></span>
-    </label> -->
-    <h2>💼 Office light 💡</h2>
-    <div class="display-current-state">
-      <label class="switch-toggle"></label>
-      <div id="currentStateOffice" class="state">current color setting</div>
-    </div>
-
-    <div class="all-buttons">
-      <button
-        class="buttons"
-        id="heyButton"
-        style="background: rgb(192, 149, 76)"
-      >
-        hey 👋
-      </button>
-      <button
-        class="buttons"
-        id="workButton"
-        style="background: rgb(159, 187, 206)"
-      >
-        work 👩‍💻
-      </button>
-      <button
-        class="buttons"
-        id="eatButton"
-        style="background: rgb(45, 214, 77)"
-      >
-        eat 🍔
-      </button>
-      <button
-        class="buttons"
-        id="fikaButton"
-        style="background: rgb(255, 117, 253)"
-      >
-        "fika" 🍰
-      </button>
-      <!-- <button class="buttons">bath 🛁</button> -->
-      <button
-        class="buttons"
-        id="sleepButton"
-        style="background: rgb(245, 153, 32)"
-      >
-        sleep 😴
-      </button>
-      <button
-        class="buttons"
-        id="helpButton"
-        style="background: rgb(255, 70, 1)"
-      >
-        help 🆘
-      </button>
-    </div>
-
-    <h2>📚 Reading room light 💡</h2>
-    <div class="display-current-state">
-      <label class="switch-toggle"></label>
-      <div id="currentStateReading" class="state">current color setting</div>
-    </div>
-
-    <h2>💤 Bedroom light 💡</h2>
-    <label class="switch-toggle"></label>
+    <section>
+      <h1>I need Hue</h1>
+      <div>
+        <h2>💼 Office light 💡</h2>
+        <div class="display-current-state">
+          <label class="switch-toggle"></label>
+          <div id="currentStateOffice" class="state">current color</div>
+        </div>
+        <div class="all-buttons">
+          <button
+            class="buttons"
+            id="heyButton"
+            style="background: rgb(192, 149, 76)"
+          >
+            hey 👋
+          </button>
+          <button
+            class="buttons"
+            id="workButton"
+            style="background: rgb(159, 187, 206)"
+          >
+            work 👩‍💻
+          </button>
+          <button
+            class="buttons"
+            id="eatButton"
+            style="background: rgb(45, 214, 77)"
+          >
+            eat 🍔
+          </button>
+          <button
+            class="buttons"
+            id="fikaButton"
+            style="background: rgb(255, 117, 253)"
+          >
+            "fika" 🍰
+          </button>
+          <button
+            class="buttons"
+            id="sleepButton"
+            style="background: rgb(245, 153, 32)"
+          >
+            sleep 😴
+          </button>
+          <button
+            class="buttons"
+            id="helpButton"
+            style="background: rgb(255, 70, 1)"
+          >
+            help 🆘
+          </button>
+        </div>
+      </div>
+      <div>
+        <h2>📚 Reading room light 💡</h2>
+        <div class="display-current-state">
+          <label class="switch-toggle"></label>
+        </div>
+      </div>
+      <div>
+        <h2>💤 Bedroom light 💡</h2>
+        <div class="display-current-state">
+          <label class="switch-toggle"></label>
+        </div>
+      </div>
+    </section>
     <script src="./ColorConverter.js"></script>
     <script src="./script.js"></script>
   </body>

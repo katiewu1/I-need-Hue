@@ -1,11 +1,10 @@
 body {
   font-family: 'Gluten', cursive;
   margin: 10px;
-  background-color: rgb(75, 75, 75);
+  background-color: rgb(34 37 46);
 }
 
 h1 {
-  /* /background-color: pink; */
   font-size: 72px;
   /* background: -webkit-linear-gradient(rgb(243, 198, 235), rgb(54, 204, 209)); */
   background: linear-gradient(to right, #f0cff3 40%, #1fe2d8 70%);
@@ -20,7 +19,6 @@ h2 {
 
 .display-current-state {
   display: flex;
-  /* border: 1px dotted red; */
   justify-content: flex-start;
   align-items: center;
   width: 90%;
@@ -36,7 +34,7 @@ h2 {
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  color: rgb(0, 0, 0);
+  color: rgb(34 37 46);
   margin: 10px;
 }
 
@@ -44,13 +42,14 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 8px;
-  width: 90%;
+  width: 85%;
   margin: auto;
 }
 
 .buttons {
   grid-column: span 1;
-  color: rgb(82, 78, 78);
+  /* color: rgb(82, 78, 78); */
+  color: rgb(34 37 46);
   font-family: 'Gluten', cursive;
   width: 94px;
   height: 54px;
@@ -150,7 +149,14 @@ h2 {
 }
 
 @media (min-width: 768px) {
+  h2 {
+    text-align: center;
+  }
+  .display-current-state {
+    justify-content: center;
+  }
   .all-buttons {
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    justify-content: center;
   }
 }
